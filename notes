@@ -1,0 +1,21 @@
+Families - has many baby Rental Items
+    Location - String
+    Name - String
+    Contact_Number - String 
+
+
+
+
+
+Baby Rental Items - belongs to a family
+    Family_id: integer
+    Age: Integer
+    Category: String
+    Condition: String
+    Item_name: String
+    Status: String 
+
+
+
+
+
