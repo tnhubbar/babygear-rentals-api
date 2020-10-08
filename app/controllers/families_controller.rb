@@ -1,31 +1,31 @@
 class FamiliesController < ApplicationController
 
     def index
-        @accounts = Account.all 
-        render json: @accounts  
+        @families = Family.all 
+        render json: @families 
 
     end 
 
 
     def create 
-        @account = Account.new(account_params)
-        if @account.save 
-            render json: @account
+        @family = Family.new(family_params)
+        if @family.save 
+            render json: @family
         else 
-            render json: {error: 'Error creating account'}
+            render json: {error: 'Error creating family'}
         end 
     end 
 
 
     def show 
-        @account = Account.find(params[:id])
-        render json: @account 
+        @family = Family.find(params[:id])
+        render json: @family
 
     end 
 
     def destroy 
-        @account = Account.find(params[:id])
-        account.destroy 
+        @family = Family.find(params[:id])
+        family.destroy 
     end
 
 

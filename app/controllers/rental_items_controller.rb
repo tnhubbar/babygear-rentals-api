@@ -1,15 +1,15 @@
 class RentalItemsController < ApplicationController
-
+    before_action :set_family
     def index
 
-        @rental_items = Rental_item.all 
+        @rental_items = @family.rental_items  
         render json: @rental_items  
 
     end 
 
 
     def create 
-        @rental_item = Rental_item.new(rental_item_params)
+        @rental_item = @family.rental_items.build(rental_item_params)
         if @rental_item.save 
             render json: @rental_item
         else 
@@ -19,7 +19,7 @@ class RentalItemsController < ApplicationController
 
 
     def show 
-        @rental_item = Rental_item.find(params[:id])
+        @rental_item = @family.rental_items.find_by(id: params[:id])
         render json: @rental_item 
 
     end 
