@@ -25,7 +25,7 @@ class RentalItemsController < ApplicationController
     end 
 
     def destroy 
-        @rental_item = Rental_item.find(params[:id])
+        @rental_item = RentalItem.find(params[:id])
         account.destroy 
     end
 
