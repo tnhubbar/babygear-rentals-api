@@ -1,17 +1,21 @@
 class RentalItemsController < ApplicationController
-    before_action :set_family
+    
     def index
-
-        @rental_items = @family.rental_items  
+        if params[:family_id]
+        set_family  
+        else
+        @rental_items = RentalItem.all 
+        end 
         render json: @rental_items  
 
     end 
 
 
     def create 
+        set_family
         @rental_item = @family.rental_items.build(rental_item_params)
         if @rental_item.save 
-            render json: @rental_item
+            render json: @family
         else 
             render json: {error: 'Error creating rental item'}
         end 
@@ -19,14 +23,23 @@ class RentalItemsController < ApplicationController
 
 
     def show 
+        set_family
         @rental_item = @family.rental_items.find_by(id: params[:id])
         render json: @rental_item 
 
     end 
 
+    def update
+        binding.pry 
+        @rental_item = RentalItem.find(params[:id])
+        @rental_item.update(status: params["rental"])
+    end 
+
     def destroy 
         @rental_item = RentalItem.find(params[:id])
-        account.destroy 
+        @family = Family.find(@rental_item.family_id)
+        @rental_item.destroy 
+        render json: @family 
     end
 
 

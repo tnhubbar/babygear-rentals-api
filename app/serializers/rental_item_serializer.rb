@@ -1,3 +1,3 @@
 class RentalItemSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :item_name, :status, :family_id
 end
